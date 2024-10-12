@@ -1,0 +1,316 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.chat-container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    width: auto; 
+}
+
+.user-message .message-content {
+    background-color: #007bff; 
+    color: #fff; 
+}
+
+.bot-message .message-content { 
+    background-color: #28a745; 
+    color: #fff; 
+}
+
+
+.message-content {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.message-form {
+    position: fixed;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    z-index: 1; 
+}
+
+.chat-input {
+    flex: 1;
+    width: 500px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    resize: none;
+    overflow: hidden;
+}
+
+.send-button {
+    margin-left: 7px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc; 
+    color: #fff;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto; 
+    margin-bottom: 60px; 
+}
+
+.send-button.active {
+    background-color: #007bff;
+    cursor: pointer;
+}
+
+.send-button:hover:not(.active) {
+    cursor: default;
+}
+
+
+.mode-switch-btn {
+    position: absolute; 
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; 
+}
+
+.mode-switch-btn i {
+    font-size: 24px;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .chat-container {
+    background-color: #222;
+    color: #fff;
+    border-color: #444;
+}
+
+.dark-mode .message-content {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .chat-input {
+    background-color: #444;
+    color: #fff;
+    border-color: #444;
+}
+
+.dark-mode .send-button {
+    background-color: #555;
+    color: #fff;
+}
+
+.dark-mode .send-button:hover {
+    background-color: #666;
+}
+
+.dark-mode .message-form {
+    background-color: #222;
+}
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px; 
+    height: 100%;
+    background-color: #f8f9fa;
+    z-index: 1000;
+    overflow: hidden;
+    transition: width 0.5s; 
+}
+
+.sidebar-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
+    align-items: center;
+    text-align: center; 
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: auto; 
+}
+
+.user-icon-placeholder {
+    margin-top: 50px; 
+}
+
+
+.sidebar .logout-button {
+    position: fixed;
+    bottom: 0%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
+
+.sidebar-toggle,
+.user-icon-placeholder,
+.logout-button {
+    cursor: pointer;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+.username {
+    display: none; 
+    font-size: 20px;
+    margin-top: 20px; 
+    font-weight: bold;
+}
+
+.username::first-letter {
+    text-transform: uppercase;
+}
+
+
+.chat-container {
+    position: relative;
+    padding-left: 10px; 
+    transition: padding-left 0.7s; 
+}
+
+
+.chat-messages {
+    
+    padding-left: 60px; 
+}
+
+
+.sidebar-open .sidebar {
+    width: 200px;
+}
+
+.sidebar-open .user-icon-placeholder i {
+    font-size: 40px;
+}
+
+
+.sidebar-open .chat-messages {
+    padding-left: 200px;
+}
+
+.dark-mode .sidebar {
+    background-color: #343a40; 
+}
+
+.dark-mode .sidebar-content {
+    color: #fff; 
+}
+
+.dark-mode .user-icon-placeholder i,
+.dark-mode .logout-button i {
+    color: #fff; 
+}
+
+.dark-mode .sidebar-open .logout-button {
+    color: #fff;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.input-wrapper {
+    position: relative;
+}
+
+.chat-input.loading {
+    padding-right: 40px;
+}
+
+.loader {
+    display: none;
+    position: absolute;
+    top: 18%;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid lightblue;
+    border-right-color: orange;
+    animation: l2 1.1s infinite linear;
+}
+
+@keyframes l2 {to{transform: rotate(1turn)}}
+
+.dark-mode .loader {
+    border-color: #0a0a0a;
+    border-right-color: #eef1f2;
+}
+
+.chat-nav-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color:white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-nav-button:hover {
+    background-color: #0056b3;
+}
+
+.dark-mode .chat-nav-button {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+
+
+

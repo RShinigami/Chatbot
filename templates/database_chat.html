@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Chat Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/database_chat_styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="user-icon-placeholder">
+                    <i class="fas fa-user"></i>
+                    <div class="username" id="username">{{ username }}</div>
+                </div>
+                <button class="chat-nav-button" id="main-chat-button">
+                    Chat
+                </button>
+                <button class="chat-nav-button" id="database-chat-button">
+                    DB Chat
+                </button>
+                <button class="logout-button" id="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="message-form">
+            <div class="input-wrapper">
+                <textarea type="text" class="chat-input" id="user-input" placeholder="Type your message..."></textarea>
+                <div class="loader" id="loader"></div>
+            </div>
+            <button class="send-button" id="send-button" type="submit">Send</button>
+        </div>
+        <button class="mode-switch-btn" id="mode-switch-btn">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+    <script src="{{ url_for('static', filename='js/database_script.js') }}"></script>
+</body>
+</html>

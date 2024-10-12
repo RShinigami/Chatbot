@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh ;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(11,11,0);
+            background: linear-gradient(90deg, rgba(11,11,0,1) 0%, rgba(0,0,0,0.8739145316329657) 35%, rgba(0,0,0,0.784278677291229) 100%);
+            border : 1px solid black;
+            height: 40vh;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        form {
+            width: 300px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        span {
+            color: yellow;
+        }
+        h3  {
+            text-align: center;
+            color: white;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+            padding: 10px;
+            background: rgb(11,11,0);
+            background: linear-gradient(90deg, rgba(11,11,0,1) 0%, rgba(0,0,0,0.8739145316329657) 35%, rgba(0,0,0,0.784278677291229) 100%);
+            color: #fff;
+            border: 3px solid #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        input[type="submit"]:hover {
+            background-color: white;
+       }
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="login-form">
+            <h1><span>FIN</span>LOGIK</h1>
+            <h3>Login</h3>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <div id="error" class="error"></div>
+        </form>
+        
+        <script>
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({username: username, password: password})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('error').innerText = data.error;
+                    } else {
+                        window.location.href = data.redirect;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
+    </div>
+</body>
+</html>
